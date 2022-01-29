@@ -100,5 +100,9 @@
         <file>wheel/images/wheel.png</file>
         <file>wheel/main.qml</file>
         <file>wheel/Wall.qml</file>
+        <file>angletracking/angleTracking.qml</file>
+        <file>angletracking/Line.qml</file>
+        <file>revoluteplotangle/Revolute.qml</file>
+        <file>revoluteplotangle/revolutePlotAngle.qml</file>
     </qresource>
 </RCC>
