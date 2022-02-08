@@ -22,6 +22,10 @@ Window {
             path: "angletracking/angleTracking.qml"
         }
         ListElement {
+            name: "blob"
+            path: "blob/main.qml"
+        }
+        ListElement {
             name: "boxes"
             path: "boxes/boxes.qml"
         }

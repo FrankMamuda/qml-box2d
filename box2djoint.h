@@ -62,7 +62,8 @@ public:
         WeldJoint,
         FrictionJoint,
         RopeJoint,
-        MotorJoint
+        MotorJoint,
+        ConstantVolumeJoint
     };
 
     Box2DJoint(JointType jointType, QObject *parent = 0);

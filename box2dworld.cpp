@@ -150,8 +150,22 @@ Box2DWorld::~Box2DWorld()
     // Box2DJoint instances.
     for (b2Body *body = mWorld.GetBodyList(); body; body = body->GetNext())
         toBox2DBody(body)->nullifyBody();
-    for (b2Joint *joint = mWorld.GetJointList(); joint; joint = joint->GetNext())
-        toBox2DJoint(joint)->nullifyJoint();
+
+    // NOTE: not all joints belong to QML
+    //       for example ConstantVolumeJoint has its own DistanceJoints
+    //       that should not be removed here
+    QList<Box2DJoint *> jointList;
+    for ( b2Joint *joint = mWorld.GetJointList(); joint; joint = joint->GetNext()) {
+        Box2DJoint *j( toBox2DJoint( joint ));
+        if ( j != nullptr )
+            jointList << j;
+    }
+
+    for ( Box2DJoint *j : qAsConst( jointList ))
+        j->nullifyJoint();
+
+    //for (b2Joint *joint = mWorld.GetJointList(); joint; joint = joint->GetNext())
+    //    toBox2DJoint(joint)->nullifyJoint();
     enableContactListener(false);
     if (mDefaultWorld == this)
         mDefaultWorld = 0;

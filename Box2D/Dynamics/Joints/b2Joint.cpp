@@ -16,6 +16,8 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
+#include "b2ConstantVolumeJoint.h"
+
 #include <Box2D/Dynamics/Joints/b2Joint.h>
 #include <Box2D/Dynamics/Joints/b2DistanceJoint.h>
 #include <Box2D/Dynamics/Joints/b2WheelJoint.h>
@@ -117,6 +119,13 @@ b2Joint* b2Joint::Create(const b2JointDef* def, b2BlockAllocator* allocator)
 		}
 		break;
 
+    case e_constantVolumeJoint:
+        {
+            void* mem = allocator->Allocate(sizeof(b2ConstantVolumeJoint));
+            joint = new (mem) b2ConstantVolumeJoint(static_cast<const b2ConstantVolumeJointDef*>(def));
+        }
+        break;
+
 	default:
 		b2Assert(false);
 		break;
@@ -173,6 +182,10 @@ void b2Joint::Destroy(b2Joint* joint, b2BlockAllocator* allocator)
 	case e_motorJoint:
 		allocator->Free(joint, sizeof(b2MotorJoint));
 		break;
+
+    case e_constantVolumeJoint:
+        allocator->Free(joint, sizeof(b2ConstantVolumeJoint));
+        break;
 
 	default:
 		b2Assert(false);

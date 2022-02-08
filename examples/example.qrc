@@ -104,5 +104,7 @@
         <file>angletracking/Line.qml</file>
         <file>revoluteplotangle/Revolute.qml</file>
         <file>revoluteplotangle/revolutePlotAngle.qml</file>
+        <file>blob/main.qml</file>
+        <file>blob/Wall.qml</file>
     </qresource>
 </RCC>
